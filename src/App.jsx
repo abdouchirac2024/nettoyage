@@ -12,10 +12,12 @@ import TestimonialsPage from './pages/TestimonialsPage'
 import ContactPage from './pages/ContactPage'
 import BlogPage from './pages/BlogPage'
 import FaqPage from './pages/FaqPage'
+import CustomCursor from './components/ui/CustomCursor'
 
 function App() {
   return (
     <div className="flex min-h-screen flex-col">
+      <CustomCursor />
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">

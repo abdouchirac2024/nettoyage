@@ -55,81 +55,92 @@ function HomePage() {
 
   return (
     <div>
-      {/* ========== HERO SECTION ========== */}
-      <section className="relative bg-gradient-to-br from-primary-800 to-primary-900 overflow-hidden">
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 1px, transparent 1px), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '60px 60px',
-            }}
-          />
+      {/* ========== HERO SECTION (Premium Update) ========== */}
+      <section className="relative min-h-[90vh] flex items-center bg-slate-900 overflow-hidden">
+        {/* Animated Mesh Gradient Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-primary-600/20 blur-[120px] animate-float" />
+          <div className="absolute top-[20%] -right-[5%] w-[35%] h-[35%] rounded-full bg-green-500/10 blur-[100px] animate-float stagger-2" />
+          <div className="absolute -bottom-[10%] left-[20%] w-[30%] h-[30%] rounded-full bg-primary-400/10 blur-[80px] animate-float stagger-4" />
+
+          {/* Grid Pattern */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" className="animate-grid" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left side */}
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
-                {t.hero.title}
+            <div className="z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary-300 text-sm font-medium mb-6 animate-fade-in-up stagger-1 backdrop-blur-md">
+                <Sparkles className="w-4 h-4" />
+                <span>{lang === 'fr' ? 'ÉclatNet Pro - Excellence & Passion' : 'ÉclatNet Pro - Excellence & Passion'}</span>
+              </div>
+
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-white leading-[1.1] mb-8 animate-fade-in-up stagger-2">
+                {t.hero.title.split(' ').map((word, i) => (
+                  <span key={i} className="inline-block mr-3">
+                    {word}
+                  </span>
+                ))}
               </h1>
-              <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-lg">
+
+              <p className="text-xl text-slate-300 mb-10 max-w-lg leading-relaxed animate-fade-in-up stagger-3">
                 {t.hero.subtitle}
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  to="/devis"
-                  className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl"
-                >
+
+              <div className="flex flex-wrap gap-5 animate-fade-in-up stagger-4">
+                <Link to="/devis" className="btn-primary group">
                   {lang === 'fr' ? 'Obtenir un devis gratuit' : 'Get a Free Quote'}
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg border border-white/30 transition-colors duration-300"
-                >
+                <Link to="/services" className="btn-secondary">
                   {lang === 'fr' ? 'Nos services' : 'Our Services'}
                 </Link>
               </div>
             </div>
 
-            {/* Right side - placeholder image */}
-            <div className="hidden lg:block">
-              <div className="rounded-2xl overflow-hidden bg-primary-700/50 aspect-[4/3] flex items-center justify-center">
-                <Sparkles className="w-24 h-24 text-white/30" />
+            {/* Right side - Abstract Visual */}
+            <div className="relative hidden lg:block animate-fade-in-up stagger-5">
+              <div className="relative z-10 rounded-3xl overflow-hidden glass aspect-square flex items-center justify-center p-8 group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <Sparkles className="w-48 h-48 text-primary-400/20 group-hover:scale-110 transition-transform duration-1000" />
+
+                {/* Floatings items */}
+                <div className="absolute top-10 right-10 p-4 glass rounded-2xl animate-float">
+                  <Shield className="w-8 h-8 text-green-400" />
+                </div>
+                <div className="absolute bottom-10 left-10 p-4 glass rounded-2xl animate-float stagger-3">
+                  <CheckCircle className="w-8 h-8 text-primary-400" />
+                </div>
               </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -z-10 -top-10 -right-10 w-64 h-64 bg-primary-600/20 rounded-full blur-3xl animate-pulse" />
+              <div className="absolute -z-10 -bottom-10 -left-10 w-48 h-48 bg-green-500/10 rounded-full blur-2xl animate-pulse" />
             </div>
           </div>
 
-          {/* Trust bar */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-              <div className="bg-green-500/20 p-3 rounded-lg">
-                <Users className="w-6 h-6 text-green-400" />
+          {/* Trust bar (Glass Style) */}
+          <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up stagger-5">
+            {[
+              { icon: Users, label: t.hero.stats.clients, color: 'text-primary-400' },
+              { icon: Shield, label: t.hero.stats.certified, color: 'text-green-400' },
+              { icon: Clock, label: t.hero.stats.available, color: 'text-primary-300' }
+            ].map((stat, i) => (
+              <div key={i} className="glass flex items-center gap-5 p-6 rounded-2xl hover:bg-white/10 transition-colors group">
+                <div className="bg-white/5 p-4 rounded-xl group-hover:scale-110 transition-transform">
+                  <stat.icon className={`w-7 h-7 ${stat.color}`} />
+                </div>
+                <span className="text-white font-semibold text-lg">{stat.label}</span>
               </div>
-              <span className="text-white font-medium">
-                {t.hero.stats.clients}
-              </span>
-            </div>
-            <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-              <div className="bg-green-500/20 p-3 rounded-lg">
-                <Shield className="w-6 h-6 text-green-400" />
-              </div>
-              <span className="text-white font-medium">
-                {t.hero.stats.certified}
-              </span>
-            </div>
-            <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-              <div className="bg-green-500/20 p-3 rounded-lg">
-                <Clock className="w-6 h-6 text-green-400" />
-              </div>
-              <span className="text-white font-medium">
-                {t.hero.stats.available}
-              </span>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -167,27 +178,26 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle title={t.whyUs.title} />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {t.whyUs.reasons.map((reason, index) => {
               const IconComponent = whyUsIcons[index];
               return (
                 <div
                   key={index}
                   ref={whyUsRefs[index]}
-                  className={`bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-500 ${
-                    whyUsVisibles[index]
+                  className={`group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-700 border border-slate-100 ${whyUsVisibles[index]
                       ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                      : 'opacity-0 translate-y-12'
+                    }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="bg-primary-100 text-primary-600 p-3 rounded-full w-fit mb-4">
-                    <IconComponent className="w-6 h-6" />
+                  <div className="bg-primary-50 text-primary-600 p-4 rounded-2xl w-fit mb-6 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-500">
+                    <IconComponent className="w-7 h-7" />
                   </div>
-                  <h3 className="text-lg font-display font-bold text-primary-800 mb-2">
+                  <h3 className="text-xl font-display font-bold text-slate-900 mb-3">
                     {reason.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     {reason.desc}
                   </p>
                 </div>
@@ -221,11 +231,10 @@ function HomePage() {
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-5 h-5 ${
-                        i < current.rating
-                          ? 'text-yellow-400 fill-yellow-400'
-                          : 'text-gray-300'
-                      }`}
+                      className={`w-5 h-5 ${i < current.rating
+                        ? 'text-yellow-400 fill-yellow-400'
+                        : 'text-gray-300'
+                        }`}
                     />
                   ))}
                 </div>
@@ -265,11 +274,10 @@ function HomePage() {
                 <button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial
-                      ? 'bg-green-500 w-6'
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentTestimonial
+                    ? 'bg-green-500 w-6'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
               ))}
